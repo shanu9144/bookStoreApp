@@ -1,31 +1,35 @@
-import React from "react";
 import PropTypes from "prop-types";
-
 
 function Cards({ item }) {
   return (
-    <>
-      <div className="mt-4 my-3 p-3">
-        <div className="card w-92 bg-base-100 shadow-xl hover:scale-105 duration-200 dark:bg-slate-900 dark:text-white dark:border">
-          <figure>
-            <img src={item.image} alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              {item.name}
-              <div className="badge badge-secondary">{item.category}</div>
-            </h2>
-            <p>{item.title}</p>
-            <div className="card-actions justify-between">
-              <div className="badge badge-outline">${item.price}</div>
-              <div className=" cursor-pointer px-2 py-1 rounded-full border-[2px] hover:bg-pink-500 hover:text-white duration-200">
-                Buy Now
-              </div>
+    <div className="mt-4 my-3 p-3">
+      <div className="card w-92 bg-base-100 shadow-xl hover:scale-105 duration-200 dark:bg-slate-900 dark:text-white dark:border">
+        <figure className="relative">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-48 object-cover rounded-t-lg"
+          />
+          <div className="absolute top-2 right-2 bg-pink-500 text-white px-2 py-1 rounded-md text-sm">
+            {item.category}
+          </div>
+        </figure>
+        <div className="card-body p-4">
+          <h2 className="card-title text-xl font-semibold mb-2">
+            {item.name}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-4">{item.title}</p>
+          <div className="card-actions justify-between items-center">
+            <div className="badge badge-outline text-lg font-bold">
+              ${item.price}
             </div>
+            <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition duration-300">
+              Buy Now
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
