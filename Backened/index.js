@@ -38,6 +38,17 @@ connectToDatabase();
 app.use("/book", bookRoute);
 app.use("/user", userRoute);
 
+// Handle requests from the frontend
+app.get("/api", (req, res) => {
+    res.send("API is working");
+});
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../Frontened/build")));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../Frontened", "build", "index.html"));
+    });
+}
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

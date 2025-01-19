@@ -1,15 +1,11 @@
-// import React from "react";
 import { useAuth } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
 function Logout() {
-  const [authUser, setAuthUser] = useAuth();
+  const { authUser, setAuthUser } = useAuth();
   const handleLogout = () => {
     try {
-      setAuthUser({
-        ...authUser,
-        user: null,
-      });
+      setAuthUser(null);
       localStorage.removeItem("Users");
       toast.success("Logout successfully");
 

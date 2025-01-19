@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -9,6 +9,7 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const userInfo = {
@@ -26,6 +27,7 @@ function Login() {
           setTimeout(() => {
             window.location.reload();
             localStorage.setItem("Users", JSON.stringify(res.data.user));
+            navigate(-1); // Redirect to the previous page
           }, 1000);
         }
       })
@@ -41,7 +43,7 @@ function Login() {
   return (
     <div>
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box dark:bg-slate-800 dark:text-white">
           <form onSubmit={handleSubmit(onSubmit)} method="dialog">
             {/* Close button */}
             <Link
@@ -91,12 +93,15 @@ function Login() {
               </button>
               <p className="text-gray-700 dark:text-gray-300">
                 Not registered?{" "}
-                <Link
-                  to="/signup"
+                <a
                   className="underline text-blue-500 cursor-pointer"
+                  onClick={() => {
+                    document.getElementById("my_modal_3").close();
+                    document.getElementById("my_modal_4").showModal();
+                  }}
                 >
                   Signup
-                </Link>
+                </a>
               </p>
             </div>
           </form>

@@ -1,6 +1,19 @@
 import PropTypes from "prop-types";
+import { useAuth } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 function Cards({ item }) {
+  const { authUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleBuyNow = () => {
+    if (!authUser) {
+      navigate("/signup");
+    } else {
+      // Logic to handle book purchase
+    }
+  };
+
   return (
     <div className="mt-4 my-3 p-3">
       <div className="card w-92 bg-base-100 shadow-xl hover:scale-105 duration-200 dark:bg-slate-900 dark:text-white dark:border">
@@ -23,7 +36,10 @@ function Cards({ item }) {
             <div className="badge badge-outline text-lg font-bold">
               ${item.price}
             </div>
-            <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition duration-300">
+            <button
+              className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition duration-300"
+              onClick={handleBuyNow}
+            >
               Buy Now
             </button>
           </div>

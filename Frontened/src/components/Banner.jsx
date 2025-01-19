@@ -1,12 +1,12 @@
-// import React from "react";
 import { useNavigate } from "react-router-dom";
 import banner from "../../public/Banner.png";
+import Signup from "./Signup";
 
 function Banner() {
   const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    navigate("/login");
+    document.getElementById("my_modal_4").showModal();
   };
 
   return (
@@ -30,6 +30,7 @@ function Banner() {
       <div className="w-full order-1 md:order-2 md:w-1/2">
         <img src={banner} alt="Banner" className="w-full h-auto rounded-lg shadow-lg" />
       </div>
+      <Signup />
     </div>
   );
 }

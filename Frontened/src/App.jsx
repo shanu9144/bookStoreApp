@@ -11,7 +11,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthProvider";
 
 function App() {
-  const [authUser, setAuthUser] = useAuth();
+  const { authUser, setAuthUser } = useAuth();
   console.log(authUser);
   return (
     <>
